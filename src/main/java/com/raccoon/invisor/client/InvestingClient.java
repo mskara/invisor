@@ -27,17 +27,8 @@ import java.util.function.Function;
 public class InvestingClient implements IClient {
 
     //userAgent might be changed every day, while the cookie can be changed every 30 min (Cloudflare)
-    private String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
-    private String cookie = "cf_clearance=291e2af5d80e08fe939efc92d61600d2736a2156-1624898104-0-150;";
-    private Logger logger = LoggerFactory.getLogger(InvestingClient.class);
-
-    public void setUserAgent(String userAgent) {
-        this.userAgent = userAgent;
-    }
-
-    public void setCookie(String cookie) {
-        this.cookie = cookie;
-    }
+    private final String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36";
+    private final String cookie = "cf_clearance=KkZqPhB8oHj5_Xv7TEEZMfrMF2hhlQ6ddVWKbD725OM-1639221170-0-150    ;";
 
     @Override
     public List<Equity> getEquityList() {
@@ -173,14 +164,11 @@ public class InvestingClient implements IClient {
         Elements rows = doc.select("#cr1>tbody>tr>td.elp>span");
 
         rows.forEach(row -> equityIdList.add(Integer.valueOf(row.attr("data-id"))));
-
         return equityIdList;
     }
 
     @Override
     public List<HistoricalData> getHistoricalDatas(Integer instrumentId, Date startDate, Date endDate) {
-
-        logger.info(String.format("Fetching historical datas for %d ... ", instrumentId));
 
         //converter lambdas
         Function<String, BigDecimal> bdConverter = a -> new BigDecimal(a.replace(".", "").replace(",", "."));

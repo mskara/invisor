@@ -34,9 +34,6 @@ public class Hello {
     @Autowired
     InvestingClient ic;
 
-    @Autowired
-    Task task;
-
     @GetMapping("/test")
     public Indice test() {
         return id.findByIndiceId(19155);
@@ -55,7 +52,6 @@ public class Hello {
 
     @GetMapping("/hd")
     public List<HistoricalData> getHD() {
-        task.updateInstruments();
         return null;
     }
 
