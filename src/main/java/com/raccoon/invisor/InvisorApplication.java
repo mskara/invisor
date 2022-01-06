@@ -10,5 +10,7 @@ public class InvisorApplication {
     public static void main(String[] args) {
         SpringApplication.run(InvisorApplication.class, args);
     }
+	
+	//deneme
 
 }
